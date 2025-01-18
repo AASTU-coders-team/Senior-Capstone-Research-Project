@@ -1,0 +1,46 @@
+@startuml
+
+'settings
+left to right direction
+scale 1
+skinparam dpi 90
+
+' elements
+node reverse_proxy as "Reverse Proxy"
+
+node backend as "Backend Application"
+node recs as "Recommendation System"
+cloud media_cache as "Media Cache"
+
+node db as "Databases" {
+    database db_replica as "Read only DB replica"
+    database db_primary as "Primary DB"
+}
+
+cloud db_cache as "Database Cache"
+
+node processing as "Processing System"
+queue queues as "Queuing System"
+
+node storage_server as "Storage server" {
+    storage object_store_processed as "Object Storage (Processed)"
+    storage object_store_raw as "Object Storage (Raw)"
+}
+
+' relationships
+reverse_proxy -- backend
+db -right- backend
+db_replica .down. db_primary
+backend -- object_store_raw
+object_store_raw -- queues
+
+queues -right- processing
+
+processing -- object_store_processed
+object_store_processed -up- media_cache
+media_cache -left- backend
+db -- db_cache
+db_cache -right- backend
+backend -right- recs
+
+@enduml

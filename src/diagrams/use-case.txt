@@ -1,0 +1,55 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor buyer as "Buyer"
+actor seller as "Seller"
+
+package system as "E-commerce System" {
+    together {
+        usecase "Browse Products" as uc1
+        usecase "View Product Details" as uc2
+        usecase "Add Product To Cart" as uc3
+        usecase "Make Payment" as uc4
+    }
+    together {
+        usecase "Upload Product Media" as uc5
+        usecase "List Product" as uc6
+        usecase "Manage Inventory" as uc7
+        usecase "Analyze Sales Performance" as uc8
+        usecase "Upload Product Media" as uc9
+        usecase "Fulfill Orders" as uc10
+    }
+    together {
+        usecase "Verify Vendor" as uc11
+        usecase "Moderate Listings" as uc12
+        usecase "Resolve Disputes" as uc13
+    }
+    together {
+        usecase "Assign Delivery" as uc14
+        usecase "Update Delivery Status" as uc15
+    }
+}
+
+actor admin as "Admin"
+actor "Delivery Agent" as DeliveryAgent
+
+buyer --> uc1
+buyer --> uc2
+buyer --> uc3
+buyer --> uc4
+seller --> uc5
+seller --> uc6
+seller --> uc7
+seller --> uc8
+seller --> uc9
+seller --> uc10
+uc11 <-- admin
+uc12 <-- admin
+buyer --> uc13
+seller --> uc13
+uc13 <-- admin
+uc14 <-- DeliveryAgent
+uc15 <-- DeliveryAgent
+
+@enduml

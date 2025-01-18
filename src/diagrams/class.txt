@@ -1,0 +1,200 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+' Define classes
+class User {
+  - userID: String
+  - username: String
+  - passwordHash: String
+  - email: String
+  - role: String
+  - isVerified: Boolean
+  - registrationDate: Date
+  + register(): void
+  + login(): void
+  + updateProfile(): void
+  + verifyAccount(): void
+}
+
+class Buyer {
+  - cartID: String
+  - orderHistory: Order[]
+  + addToCart(): void
+  + removeFromCart(): void
+  + placeOrder(): void
+  + viewOrderHistory(): void
+}
+
+class Seller {
+  - sellerID: String
+  - storeName: String
+  - productList: Product[]
+  - salesAnalytics: Analytics
+  + listProduct(): void
+  + updateProduct(): void
+  + viewSalesAnalytics(): void
+  + fulfillOrder(): void
+}
+
+class Product {
+  - productID: String
+  - title: String
+  - description: String
+  - price: Float
+  - stockQuantity: Int
+  - mediaList: Media[]
+  - sellerID: String
+  - category: Category
+  - creationDate: Date
+  + updateStock(): void
+  + addMedia(): void
+  + updateDetails(): void
+  + markAsUnavailable(): void
+}
+
+class Cart {
+  - cartID: String
+  - buyerID: String
+  - productList: Product[]
+  - totalPrice: Float
+  + addProduct(): void
+  + removeProduct(): void
+  + calculateTotal(): Float
+  + clearCart(): void
+}
+
+class Order {
+  - orderID: String
+  - buyerID: String
+  - sellerID: String
+  - productList: Product[]
+  - totalPrice: Float
+  - orderStatus: String
+  - paymentStatus: String
+  - deliveryDetails: Delivery
+  + updateOrderStatus(): void
+  + processPayment(): void
+  + addDeliveryDetails(): void
+  + viewOrderDetails(): void
+}
+
+class Payment {
+  - paymentID: String
+  - orderID: String
+  - paymentMethod: String
+  - paymentStatus: String
+  - transactionDate: Date
+  + processPayment(): void
+  + refundPayment(): void
+  + validatePayment(): void
+}
+
+class Delivery {
+  - deliveryID: String
+  - orderID: String
+  - agentID: String
+  - deliveryAddress: String
+  - deliveryStatus: String
+  - estimatedDeliveryDate: Date
+  + assignAgent(): void
+  + updateStatus(): void
+  + calculateEstimatedDelivery(): Date
+}
+
+class Media {
+  - mediaID: String
+  - fileType: String
+  - fileSize: Int
+  - filePath: String
+  - processingStatus: String
+  + uploadMedia(): void
+  + processMedia(): void
+  + deleteMedia(): void
+}
+
+class Recommendation {
+  - recommendationID: String
+  - buyerID: String
+  - productList: Product[]
+  + generateRecommendations(): void
+  + updateRecommendations(): void
+}
+
+class Category {
+  - categoryID: String
+  - categoryName: String
+  - parentCategory: Category
+  + addCategory(): void
+  + updateCategory(): void
+  + deleteCategory(): void
+}
+
+class Review {
+  - reviewID: String
+  - productID: String
+  - buyerID: String
+  - rating: Int
+  - comment: String
+  - creationDate: Date
+  + addReview(): void
+  + updateReview(): void
+  + deleteReview(): void
+}
+
+class VendorVerification {
+  - requestID: String
+  - sellerID: String
+  - status: String
+  - documentsSubmitted: String[]
+  - adminID: String
+  + submitVerificationRequest(): void
+  + approveRequest(): void
+  + rejectRequest(): void
+  + viewRequestStatus(): void
+}
+
+class Dispute {
+  - disputeID: String
+  - orderID: String
+  - buyerID: String
+  - sellerID: String
+  - reason: String
+  - status: String
+  - resolution: String
+  + openDispute(): void
+  + resolveDispute(): void
+  + escalateDispute(): void
+}
+
+class Analytics {
+  - analyticsID: String
+  - sellerID: String
+  - metrics: Map<String, Float>
+  - timePeriod: DateRange
+  + generateAnalytics(): void
+  + viewAnalytics(): void
+  + updateAnalytics(): void
+}
+
+class Notification {
+  - notificationID: String
+  - userID: String
+  - message: String
+  - creationDate: Date
+  - isRead: Boolean
+  + sendNotification(): void
+  + markAsRead(): void
+  + deleteNotification(): void
+}
+
+' Relationships
+Buyer "1" *-- "1" Cart
+Buyer "1" *-- "*" Order
+Order "1" *-- "1" Payment
+Order "1" *-- "1" Delivery
+Seller "1" *-- "*" Product
+Product "1" o-- "*" Media
+Product "1" o-- "1" Category
+Product "1" o-- "*" Review
+User "1" *-- "*" Notification
+@enduml
