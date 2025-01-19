@@ -8,6 +8,7 @@
 \usepackage{float}
 \usepackage{setspace}
 \usepackage{parskip}
+\usepackage{longtable}
 \usepackage{url}
 \def\UrlBreaks{\do\/\do-}
 \renewcommand{\arraystretch}{1.2}
@@ -916,6 +917,900 @@ modeling processes that inform our app (\textbf{PRICO})’s architecture and imp
 strategies.
 
 \chapter{Problem Analysis and Modeling}
+
+\section{Existing System and Its Problems}
+
+E-commerce platforms have become vital in connecting buyers and sellers, offering
+unprecedented convenience and market access. However, despite their potential, existing
+platforms often fail to address the unique challenges of the Ethiopian market. This section
+critically examines the current systems in use, identifying their features, limitations, and the
+underlying causes of these issues through a detailed SWOT analysis.
+
+\subsection*{Ashewa}
+
+Ashewa is a notable Ethiopian e-commerce platform offering features such as carts, wish
+lists, integrated payments, and order tracking. It also provides sellers with tools like analytics
+dashboards and basic data collection. While these features address fundamental e-commerce
+needs, Ashewa’s limitations undermine its utility.
+
+\begin{itemize}
+	\item \textbf{Strengths}: Ashewa’s localized approach, including integrated payments and seller
+	      tools, makes it accessible to Ethiopian users and businesses. Its features align well
+	      with the foundational needs of an e-commerce platform.
+	\item \textbf{Weaknesses}: The platform lacks transparency in delivery methods and vendor
+	      verification, raising trust issues. Additionally, the absence of personalized
+	      recommendations and promotional tools limits user engagement and seller visibility.
+	\item \textbf{Opportunities}: By integrating AI-driven recommendations, vendor verification
+	      systems, and streamlined delivery methods, Ashewa could capture a significant
+	      market share.
+	\item \textbf{Threats}: Competition from more advanced platforms, both local and international,
+	      threatens Ashewa’s ability to retain users if these gaps are not addressed.
+\end{itemize}
+
+Stakeholders most affected include buyers, who face trust and usability issues, and sellers,
+who struggle to differentiate themselves in the marketplace. These challenges hinder
+Ashewa’s growth and limit its competitiveness.
+
+\subsection*{Jiji}
+
+Jiji offers basic e-commerce functionalities like Oauth-based authentication, seller contact
+information, and chat features for negotiations. However, its limitations pose significant risks
+to users.
+
+\begin{itemize}
+	\item \textbf{Strengths}: Jiji provides straightforward tools for listing products and services,
+	      making it easy for users to participate in e-commerce without complex requirements.
+	\item \textbf{Weaknesses}: The lack of vendor verification and guarantees for listing accuracy
+	      exposes users to fraud. Personalized recommendations and promotional features are
+	      also missing, reducing user engagement and seller opportunities.
+	\item \textbf{Opportunities}: Implementing trust-building mechanisms such as seller verification
+	      and fraud detection could make Jiji a safer and more appealing platform.
+	\item \textbf{Threats}: Security concerns and limited features may drive users to competing
+	      platforms offering more robust protections and functionality.
+\end{itemize}
+
+These shortcomings primarily affect buyers, who face risks of scams and limited discovery
+options, and sellers, who struggle to compete in a cluttered and insecure marketplace.
+
+\subsection*{Amazon}
+
+Amazon sets the standard for e-commerce platforms with features like advanced AI-driven
+recommendations, secure payments, reliable delivery options, and robust trust mechanisms.
+However, its application in Ethiopia is constrained by several factors.
+
+\begin{itemize}
+	\item \textbf{Strengths}: Amazon excels in personalized recommendations, global shipping options,
+	      and secure payment systems, setting a global benchmark for e-commerce platforms.
+	\item \textbf{Weaknesses}: High shipping costs, lengthy delivery times, and customs complications
+	      make Amazon less accessible to Ethiopian users. Additionally, the platform lacks
+	      integration with local payment systems and language localization.
+	\item \textbf{Opportunities}: Adapting to local needs, such as offering regional payment options
+	      and language support, could significantly expand Amazon’s user base in Ethiopia.
+	\item \textbf{Threats}: The platform’s inability to address local challenges leaves room for
+	      competitors to dominate the Ethiopian market.
+\end{itemize}
+
+While Amazon excels in global e-commerce standards, these limitations underscore its
+inability to adapt to the local Ethiopian context, leaving significant gaps for competitors to
+address.
+
+\subsection*{Aliexpress}
+
+AliExpress is favored for its affordability and global shipping options, making it attractive to
+Ethiopian buyers. The platform’s secure transactions and frequent discounts further enhance
+its appeal. However, its limitations undermine its utility.
+
+\begin{itemize}
+	\item \textbf{Strengths}: Affordable pricing, global shipping options, and frequent sales make
+	      AliExpress highly attractive for cost-sensitive buyers.
+	\item \textbf{Weaknesses}: Long delivery times, high customs duties, and inconsistent product
+	      quality undermine the user experience. Additionally, the lack of localization features,
+	      such as language support and regional payment systems, limits its appeal.
+	\item \textbf{Opportunities}: Investing in faster shipping options, better quality assurance, and
+	      localization features could strengthen AliExpress’s position in Ethiopia.
+	\item \textbf{Threats}: Frustrations with delays and quality issues may push users toward other
+	      platforms that offer more consistent and localized services.
+\end{itemize}
+
+These limitations significantly impact Ethiopian buyers, who value affordability but are
+discouraged by delays, costs, and quality concerns. Sellers in Ethiopia are largely excluded
+due to the lack of localized tools and systems.
+
+\section{Specifying the Requirements of the Proposed Solution}
+
+To effectively address the challenges and limitations of existing e-commerce platforms in
+Ethiopia, it was crucial to gather and document the requirements of key stakeholders. The
+primary method employed for this was a detailed survey targeting both buyers and sellers, the
+primary user groups of the proposed platform. The survey was carefully designed to uncover
+insights into user preferences, behaviors, and the shortcomings of current systems like
+Ashewa and Jiji. By incorporating open-ended and multiple-choice questions, the survey
+provided a blend of qualitative and quantitative data, enabling a nuanced understanding of
+user needs and expectations.
+
+The elicitation process revealed critical pain points affecting stakeholders. Buyers frequently
+expressed dissatisfaction with the lack of trust mechanisms, such as unverified vendors and
+inadequate fraud prevention measures. Many respondents emphasized the importance of
+features like personalized recommendations, highlighting the inefficiency of manually
+searching through extensive product listings. Sellers, on the other hand, identified challenges
+in promoting their products effectively, pointing to the absence of tools such as analytics
+dashboards and short-form video promotions. Delivery issues, including high costs and
+delays, were cited as major barriers to wider e-commerce adoption, further underscoring the
+need for localized and reliable logistics solutions.
+
+Additionally, the survey’s open-ended responses provided further insights into functional
+requirements. The integration of short-form video promotions was a recurring suggestion,
+reflecting users' demand for more dynamic and engaging product showcases. Addressing
+issues like outdated and inaccurate listings was also highlighted as a priority, leading to the
+inclusion of features for automated product updates and accurate search functionality with
+advanced filters. Trust-building mechanisms, such as a robust vendor verification system,
+emerged as a top priority, aiming to mitigate fraud and enhance platform credibility. Unique
+ideas, like a "what’s my friend buying" social feature, were also proposed, demonstrating
+users’ interest in social and community-driven shopping experiences.
+
+In addition to these functional needs, the survey also illuminated non-functional requirements
+crucial for success in the Ethiopian market. Accessibility emerged as a significant concern,
+particularly in terms of supporting local languages like Amharic and integrating with popular
+payment methods such as Telebirr. While scalability was not explicitly mentioned, it is an
+implied requirement for a platform designed to handle personalized recommendations,
+video-based product promotions, and the potential growth in user traffic as adoption
+increases. These insights emphasized the need for a platform that delivers innovative features
+while operating seamlessly within the constraints of the local environment.
+
+The survey responses served as the foundation for outlining the high-level functional and
+non-functional requirements of the platform. By engaging with a diverse group of
+stakeholders, we were able to capture the complexities of their experiences with existing
+systems and translate those into actionable goals for the new platform. This comprehensive
+approach ensures that the proposed solution is both user-centric and contextually relevant,
+addressing the unique challenges of e-commerce in Ethiopia.
+
+\section{Functional Requirements}
+
+\begin{enumerate}
+	\item \textbf{User Registration And Authentication}: Users should be able to register an account.
+	      Asides from standard email and password based registration and authentication, we
+	      also plan to support Oauth2. Multi Factor authentication would also be another feature
+	      implemented in our system.
+	\item \textbf{User Account Management}: Registered users should be able manage their account
+	      preferences from within their personal profile/settings pages.
+	\item \textbf{Vendor Registration and verification}: Registered users should be able to create
+	      vendor accounts for the business they own or manage. Vendors should go through an
+	      extensive review process with automated and manual checks to verify their validity.
+	\item \textbf{AI Based Recommendation Engine}: Users browsing the platform should be able to
+	      get product recommendations based on their past activity, demographic information,
+	      and other data.
+	\item \textbf{Short Form Videos for Product Promotion}: Vendors should be able to use short
+	      form videos to promote their products. The short form videos should work in a
+	      manner similar to Tiktok, Youtube Shorts, and Instagram Reels.
+	\item \textbf{Fully Featured Product Search Engine}: Users should be able to search for any
+	      product they want and improve their search results using various filters
+	\item \textbf{Delivery Mechanisms}: Vendors should be able to deliver their products using
+	      platform provided delivery systems.
+	\item \textbf{Barcode Based Product Registrations}: Vendors should be able to register products
+	      using barcodes if the products have them
+	\item \textbf{Integration With Payment Systems}: Users should be able to collect payments and
+	      vendors should be able to receive them. Vendors must provide a minimum guaranteed
+	      return window for any listing they might have so as to ensure user satisfaction.
+	\item \textbf{Vendors Dashboard and Analytics}: Vendors should be able to manage their product
+	      listings and get data on their performance, as well as perform various other important
+	      tasks.
+	\item \textbf{Vendor/Product Reporting}: Users should be able to report fraudulent vendors and/or products
+	      when needed.
+	\item \textbf{Basic Social Features}: Users should be able to look at the products that their friends
+	      bought so that they can inform their own purchase decisions.
+\end{enumerate}
+
+\section{Non-Functional Requirements}
+
+The non-functional requirements of the proposed e-commerce platform are designed to
+ensure reliability, scalability, accessibility, and security. These requirements aim to deliver a
+seamless, responsive, and trustworthy user experience tailored to the Ethiopian market while
+addressing global standards.
+
+\subsection{Availability}
+
+The platform aims to provide uninterrupted service, adhering to a 99% SLA. The
+architecture's stateless app servers and redundant infrastructure ensure high reliability and
+minimal downtime.
+
+\begin{itemize}
+	\item \textbf{Stateless App Servers}: Statelessness simplifies scaling and eliminates risks tied to
+	      server-specific states, ensuring consistent availability.
+	\item \textbf{Redundant Infrastructure}: Redundant server configurations guarantee system
+	      availability during hardware failures or outages.
+	\item \textbf{Failover Systems}: Automated failover mechanisms quickly redirect traffic to
+	      operational servers in case of failure.
+	\item \textbf{Real-Time Monitoring}: Continuous system monitoring detects and resolves potential
+	      issues before they impact users.
+\end{itemize}
+
+\subsection{Performance}
+
+The platform is optimized for responsiveness, meeting user expectations even under high
+demand. The stateless nature of the app servers and worker nodes for resource-intensive tasks
+ensure smooth operations.
+
+\begin{itemize}
+	\item \textbf{Response Time Goals}: Targeting a median response time of 500ms and a 99th
+	      percentile of no more than 2 seconds ensures fast user interactions.
+	\item \textbf{Efficient Media Processing}: Worker nodes handle tasks like video encoding and
+	      compression to offload heavy processing from app servers.
+	\item \textbf{Load Balancing}: Dynamic load balancing evenly distributes requests, maintaining
+	      consistent performance across servers.
+	\item \textbf{Optimized Queries and Caching}: Efficient database queries and robust caching
+	      mechanisms reduce latency for frequently accessed data.
+\end{itemize}
+
+\subsection{Accessibility and Localization}
+
+The platform is designed to be inclusive and relevant to the Ethiopian market while
+maintaining global usability standards.
+
+\begin{itemize}
+	\item \textbf{Initial Language Support}: At launch, the platform will support English and
+	      Amharic, with plans to add other local languages based on demand.
+	\item \textbf{Localized Payment Integration}: Full integration with Telebirr and other regional
+	      payment systems ensures accessibility for Ethiopian users.
+	\item \textbf{Responsive Design}: The mobile-first approach ensures compatibility with devices of
+	      all sizes, critical in a mobile-driven market.
+	\item \textbf{User-Centric Navigation}: Clear and intuitive interface designs will cater to users
+	      with varying levels of technical proficiency.
+\end{itemize}
+
+\subsection{Security}
+
+The platform incorporates robust security measures to protect sensitive user data and
+maintain trust.
+
+\begin{itemize}
+	\item \textbf{Data Encryption}: Sensitive data, including payment details, will be encrypted using
+	      AES-256 standards.
+	\item \textbf{TLS Everywhere}: All data in transit will be secured with TLS to prevent
+	      interception.
+	\item \textbf{Password Hashing}: User passwords will be securely stored using bcrypt to mitigate
+	      the risks of breaches.
+	\item \textbf{Stateless Token Authentication}: Token-based authentication like JWTs will enable
+	      scalable, secure session management.
+	\item \textbf{Regular Security Audits}: Periodic security audits will identify and resolve
+	      vulnerabilities proactively.
+\end{itemize}
+
+\section{System Architecture}
+
+The architecture of the proposed e-commerce platform is designed to balance simplicity,
+scalability, and extensibility while meeting the unique requirements of the Ethiopian market.
+At its core, the system adopts a monolithic architecture for the primary application logic,
+augmented by specialized external services to handle resource-intensive or isolated tasks.
+This approach ensures ease of development and deployment while maintaining flexibility for
+future enhancements. A high level overview of the system can be visualized using the
+following deployment diagram:
+
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.95\textwidth]{diagrams/deployment}
+	\end{center}
+	\caption{Deployment Diagram for \textbf{PRICO}}
+\end{figure}
+
+\subsection{High-Level Components}
+
+The platform’s architecture is composed of several key components, each serving distinct
+functions while interacting seamlessly to deliver a cohesive user experience. Below is a
+description of these components and their roles:
+
+\begin{enumerate}
+	\item \textbf{Reverse Proxy}
+	      \begin{itemize}
+		      \item The reverse proxy acts as the system’s entry point, routing incoming user
+		            requests to the appropriate backend services.
+		      \item It handles tasks such as SSL termination, load balancing across stateless
+		            backend servers, and caching static assets.
+		      \item This ensures efficient traffic distribution and high availability.
+	      \end{itemize}
+	\item \textbf{Backend Application}
+	      \begin{itemize}
+		      \item The monolithic backend application handles most of the platform’s core logic,
+		            such as user authentication, product listing, cart management, and order
+		            processing.
+		      \item Its stateless nature enables effortless horizontal scaling, allowing multiple
+		            instances to serve requests concurrently.
+		      \item The backend also integrates with external components like the
+		            recommendation system, storage servers, and media cache.
+	      \end{itemize}
+	\item \textbf{Recommendation System}
+	      \begin{itemize}
+		      \item A specialized external service processes user behavior and purchase history to
+		            generate personalized product recommendations.
+		      \item This system operates independently, interfacing with the backend to deliver
+		            recommendations in real-time.
+		      \item Decoupling the recommendation system ensures extensibility and allows
+		            future algorithmic upgrades without impacting core functionality.
+	      \end{itemize}
+	\item \textbf{Storage Server}
+	      \begin{itemize}
+		      \item The storage server manages raw and processed media files, ensuring efficient
+		            handling of user-uploaded content like product images and short-form videos.
+		      \item \textbf{Object Storage (Raw)}: Stores unprocessed user uploads, which are queued
+		            for further processing.
+		      \item \textbf{Object Storage (Processed)}: Hosts optimized and ready-to-serve media files,
+		            such as resized images or transcoded videos, and verified business related
+		            documents.
+	      \end{itemize}
+	\item \textbf{Processing System}
+	      \begin{itemize}
+		      \item This component handles resource-intensive tasks such as media transcoding,
+		            compression, and automated document verification.
+		      \item A \textbf{Queuing System} orchestrates these operations by managing tasks
+		            asynchronously, ensuring smooth system performance without blocking user
+		            interactions.
+	      \end{itemize}
+	\item \textbf{Media Cache}
+	      \begin{itemize}
+		      \item The media cache stores frequently accessed processed media files and
+		            business documents to reduce latency and server load.
+		      \item It interfaces with the storage server and backend to serve content quickly,
+		            enhancing user experience during product browsing.
+	      \end{itemize}
+	\item \textbf{Databases}
+	      \begin{itemize}
+		      \item The platform employs a primary database for write operations and a read-only
+		            replica for handling high read workloads.
+		      \item A \textbf{Database Cache} reduces query latency, storing frequently accessed data
+		            such as product details and user session information.
+		      \item This setup ensures high availability and minimizes contention during peak
+		            loads.
+	      \end{itemize}
+\end{enumerate}
+
+\subsection{Interactions Between Components}
+
+\begin{enumerate}
+	\item \textbf{Request Flow}
+	      \begin{itemize}
+		      \item User requests enter through the reverse proxy and are routed to backend
+		            servers.
+		      \item The backend queries the database or cache for data, invokes the
+		            recommendation system when needed, and serves responses back to users.
+	      \end{itemize}
+	\item \textbf{Media Handling}
+	      \begin{itemize}
+		      \item Uploaded files are stored in raw object storage and added to the processing
+		            queue.
+		      \item The processing system processes these files and stores the optimized versions
+		            in processed object storage, which is then accessible via the media cache.
+	      \end{itemize}
+	\item \textbf{Recommendation Delivery}
+	      \begin{itemize}
+		      \item The backend fetches personalized recommendations from the recommendation
+		            system and integrates them into user-facing views.
+	      \end{itemize}
+\end{enumerate}
+
+\subsection{Scalability, Maintainability, and Extensibility of the Architecture}
+
+The architecture is designed with scalability in mind, leveraging stateless backend servers to
+enable horizontal scaling, supported by a read-only database replica and caching layers for
+high read workloads. The queuing system decouples resource-intensive tasks such as media
+processing, preventing bottlenecks and ensuring seamless performance even during peak
+traffic. This setup allows the platform to handle growing user demands without
+compromising response times or reliability.
+
+By centralizing business logic in the monolithic backend, the system simplifies development
+and debugging while maintaining modularity through external services like the
+recommendation engine and media processing system. These external components are
+independently maintainable and replaceable, enhancing the platform’s flexibility. This
+modular approach also ensures extensibility, supporting future feature integration—such as
+advanced AI models or third-party service integrations—without disrupting core
+functionality.
+
+\section{System Modeling}
+
+\subsection {Use Case Modeling}
+
+\subsubsection {Actors}
+
+\begin{enumerate}
+	\item \textbf{Buyer}: The end user who interacts with the platform to browse products, add items to
+	      the cart, place orders, and view personalized recommendations.
+	\item \textbf{Seller}: The entity that lists products, uploads media, manages inventory, tracks sales
+	      performance, and fulfills orders.
+	\item \textbf{Admin}: The system administrator responsible for managing platform operations,
+	      verifying vendors, moderating content, resolving disputes, and ensuring
+	      platform compliance with policies and regulations.
+	\item \textbf{Delivery Agent}: Responsible for managing order deliveries, updating order statuses, and
+	      interacting with the system to handle logistics.
+\end{enumerate}
+
+\subsubsection {Use Case Diagram}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.4\textwidth]{diagrams/use-case}
+	\end{center}
+	\caption{Use Case Diagram for \textbf{PRICO}}
+\end{figure}
+
+\subsection{Object Modeling}
+
+\subsubsection{Data Dictionary}
+
+\begin{longtable}[H]{|l|p{5cm}|p{6.5cm}||}
+	\hline
+	\textbf{Class Name} & \textbf{Properties}                                                                                       & \textbf{Operations}                                                                      \\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{Class Name} & \textbf{Properties}                                                                                       & \textbf{Operations}                                                                      \\
+	\hline
+	\endhead
+	User                & \texttt{userID, username, passwordHash, email, roles, isVerified, registrationDate}                       & \texttt{register(), login(), updateProfile(), verifyAccount()}                           \\
+	\hline
+	Buyer               & \texttt{cartID, orderHistory}                                                                             & \texttt{addToCart(), removeFromCart(), placeOrder(), viewOrderHistory()}                 \\
+	\hline
+	Seller              & \texttt{sellerID, storeName, productList, salesAnalytics}                                                 & \texttt{listProduct(), updateProduct(), viewSalesAnalytics(), fulfillOrder()}            \\
+	\hline
+	Product             & \texttt{productID, title, description, price, stockQuantity, mediaList, sellerID, category, creationDate} & \texttt{updateStock(), addMedia(), updateDetails(), markAsUnavailable()}                 \\
+	\hline
+	Cart                & \texttt{cartID, buyerID, productList, totalPrice}                                                         & \texttt{addProduct(), removeProduct(), calculateTotal(), clearCart()}                    \\
+	\hline
+	Order               & \texttt{orderID, buyerID, sellerID, productList, totalPrice, orderStatus, paymentStatus, deliveryDetails} & \texttt{updateOrderStatus(), processPayment(), addDeliveryDetails(), viewOrderDetails()} \\
+	\hline
+	Payment             & \texttt{paymentID, orderID, paymentMethod, paymentStatus, transactionDate}                                & \texttt{processPayment(), refundPayment(), validatePayment()}                            \\
+	\hline
+	Delivery            & \texttt{deliveryID, orderID, agentID, deliveryAddress, deliveryStatus, estimatedDeliveryDate}             & \texttt{assignAgent(), updateStatus(), calculateEstimatedDelivery()}                     \\
+	\hline
+	Media               & \texttt{mediaID, fileType, fileSize, filePath, processingStatus}                                          & \texttt{uploadMedia(), processMedia(), deleteMedia()}                                    \\
+	\hline
+	Recommendation      & \texttt{recommendationID, buyerID, productList}                                                           & \texttt{enerateRecommendations(), updateRecommendations()}                               \\
+	\hline
+	Category            & \texttt{categoryID, categoryName, parentCategory}                                                         & \texttt{addCategory(), updateCategory(), deleteCategory()}                               \\
+	\hline
+	Review              & \texttt{reviewID, productID, buyerID, rating, comment, creationDate}                                      & \texttt{addReview(), updateReview(), deleteReview()}                                     \\
+	\hline
+	Dispute             & \texttt{disputeID, orderID, buyerID, sellerID, reason, status, resolution}                                & \texttt{openDispute(), resolveDispute(), escalateDispute()}                              \\
+	\hline
+	Analytics           & \texttt{analyticsID, sellerID, metrics (e.g., revenue, orders), timePeriod}                               & \texttt{generateAnalytics(), viewAnalytics(), updateAnalytics()}                         \\
+	\hline
+	Notification        & \texttt{notificationID, userID, message, creationDate, isRead}                                            & \texttt{sendNotification(), markAsRead(), deleteNotification()}                          \\
+	\hline
+	Queue               & \texttt{queueID, taskList}                                                                                & enqueueTask(), dequeueTask(), processTask()                                              \\
+	\hline
+	MediaProcessingTask & \texttt{taskID, mediaID, taskType, taskStatus, creationDate}                                              & \texttt{processTask(), updateTaskStatus(), cancelTask()}                                 \\
+	\hline
+	Database            & \texttt{dbConnection, schema}                                                                             & \texttt{query(), update(), delete(), insert()}                                           \\
+	\hline
+	Cache               & \texttt{cacheID, cacheType, cachedData, expirationTime}                                                   & \texttt{storeInCache(), retrieveFromCache(), invalidateCache()}                          \\
+	\hline
+	\hline
+	\caption{Data Dictionary for \textbf{PRICO}}\label{tab:table3}
+\end{longtable}
+
+\subsubsection{Class Diagram}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=1\textwidth]{diagrams/class}
+	\end{center}
+	\caption{Class Diagram for \textbf{PRICO}}
+\end{figure}
+
+\subsection{Database Modeling}
+
+\subsubsection{Database Schema}
+
+\begin{longtable}[H]{|l|l|p{6.5cm}||}
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endhead
+	id                   & integer           & Primary Key, Not Null, Unique \\
+	\hline
+	name                 & varchar           & Not Null                      \\
+	\hline
+	username             & varchar           & Not Null, Unique              \\
+	\hline
+	email                & varchar           & Not Null, Unique              \\
+	\hline
+	email\_verified\_at  & timestamp         &                               \\
+	\hline
+	password             & varchar           & Not Null                      \\
+	\hline
+	created\_at          & timestamp         &                               \\
+	\hline
+	updated\_at          & timestamp         &                               \\
+	\hline
+	\hline
+	\caption{Database Schema for \textbf{User} table}\label{tab:table4}
+\end{longtable}
+
+\begin{longtable}[H]{|l|l|p{6.5cm}||}
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endhead
+	id                   & integer           & Primary Key, Not Null, Unique \\
+	\hline
+	name                 & varchar           & Not Null                      \\
+	\hline
+	description          & text              &                               \\
+	\hline
+	address              & varchar           & Not Null                      \\
+	\hline
+	logo                 & varchar           &                               \\
+	\hline
+	email                & varchar           &                               \\
+	\hline
+	phone\_number        & varchar           &                               \\
+	\hline
+	tin                  & varchar           & Not Null                      \\
+	\hline
+	managed\_by          & integer           & Refrences user.id             \\
+	\hline
+	license              & varchar           & Not Null                      \\
+	\hline
+	verified\_at         & timestamp         &                               \\
+	\hline
+	\hline
+	\caption{Database Schema for \textbf{Seller} table}\label{tab:table4}
+\end{longtable}
+
+\begin{longtable}[H]{|l|l|p{6.5cm}||}
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endhead
+	id                   & integer           & Primary Key, Not Null, Unique \\
+	\hline
+	title                & varchar           & Not Null                      \\
+	\hline
+	description          & text              &                               \\
+	\hline
+	price                & numeric           &                               \\
+	\hline
+	sold\_by             & integer           & References seller.id          \\
+	\hline
+	video\_shown         & integer           & References video.id           \\
+	\hline
+	\hline
+	\caption{Updated Database Schema for \textbf{Product} table}\label{tab:tableUpdatedProduct}
+\end{longtable}
+
+\begin{longtable}[H]{|l|l|p{6.5cm}||}
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endhead
+	id                   & integer           & Primary Key, Not Null, Unique \\
+	\hline
+	title                & varchar           & Not Null                      \\
+	\hline
+	description          & text              &                               \\
+	\hline
+	\hline
+	\caption{Database Schema for \textbf{Category} table}\label{tab:tableCategory}
+\end{longtable}
+
+\begin{longtable}[H]{|l|l|p{6.5cm}||}
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endhead
+	id                   & integer           & Primary Key, Not Null, Unique \\
+	\hline
+	made\_by             & integer           & References user.id            \\
+	\hline
+	\hline
+	\caption{Database Schema for \textbf{Cart} table}\label{tab:tableCart}
+\end{longtable}
+
+\begin{longtable}[H]{|l|l|p{6.5cm}||}
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endhead
+	id                   & integer           & Primary Key, Not Null, Unique \\
+	\hline
+	made\_by             & integer           & References user.id            \\
+	\hline
+	payment\_method      & varchar           & Not Null                      \\
+	\hline
+	paid\_amount         & numeric           &                               \\
+	\hline
+	deliver\_address     & varchar           & Not Null                      \\
+	\hline
+	delivered\_by        & integer           & References deliveryagent.id   \\
+	\hline
+	\hline
+	\caption{Database Schema for \textbf{Order} table}\label{tab:tableOrder}
+\end{longtable}
+
+\begin{longtable}[H]{|l|l|p{6.5cm}||}
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endhead
+	id                   & integer           & Primary Key, Not Null, Unique \\
+	\hline
+	user\_id             & integer           & References user.id            \\
+	\hline
+	\hline
+	\caption{Database Schema for \textbf{DeliveryAgent} table}\label{tab:tableDeliveryAgent}
+\end{longtable}
+
+\begin{longtable}[H]{|l|l|p{6.5cm}||}
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endhead
+	id                   & integer           & Primary Key, Not Null, Unique \\
+	\hline
+	rating               & integer           & Not Null                      \\
+	\hline
+	title                & varchar           &                               \\
+	\hline
+	description          & varchar           &                               \\
+	\hline
+	made\_by             & integer           & References user.id            \\
+	\hline
+	product\_id          & integer           & References product.id         \\
+	\hline
+	creation\_date       & timestamp         & Not Null                      \\
+	\hline
+	\hline
+	\caption{Database Schema for \textbf{Review} table}\label{tab:tableReview}
+\end{longtable}
+
+
+\begin{longtable}[H]{|l|l|p{6.5cm}||}
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endhead
+	id                   & integer           & Primary Key, Not Null, Unique \\
+	\hline
+	reporter             & integer           & References user.id            \\
+	\hline
+	reported             & integer           & References seller.id          \\
+	\hline
+	type                 & varchar           & Not Null                      \\
+	\hline
+	description          & text              &                               \\
+	\hline
+	\hline
+	\caption{Database Schema for \textbf{Report} table}\label{tab:tableReport}
+\end{longtable}
+
+\begin{longtable}[H]{|l|l|p{6.5cm}||}
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endhead
+	id                   & integer           & Primary Key, Not Null, Unique \\
+	\hline
+	name                 & varchar           & Not Null, Unique              \\
+	\hline
+	\hline
+	\caption{Database Schema for \textbf{Role} table}\label{tab:tableRole}
+\end{longtable}
+
+\begin{longtable}[H]{|l|l|p{6.5cm}||}
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endhead
+	id                   & integer           & Primary Key, Not Null, Unique \\
+	\hline
+	name                 & varchar           & Not Null, Unique              \\
+	\hline
+	\hline
+	\caption{Database Schema for \textbf{Permission} table}\label{tab:tablePermission}
+\end{longtable}
+
+\begin{longtable}[H]{|l|l|p{6.5cm}||}
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endhead
+	id                   & integer           & Primary Key, Not Null, Unique \\
+	\hline
+	alt\_text            & text              &                               \\
+	\hline
+	\hline
+	\caption{Database Schema for \textbf{Image} table}\label{tab:tableImage}
+\end{longtable}
+
+\begin{longtable}[H]{|l|l|p{6.5cm}||}
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}          \\
+	\hline
+	\endhead
+	id                   & integer           & Primary Key, Not Null, Unique \\
+	\hline
+	alt\_text            & text              &                               \\
+	\hline
+	\hline
+	\caption{Database Schema for \textbf{Video} table}\label{tab:tableVideo}
+\end{longtable}
+
+\begin{longtable}[H]{|l|l|p{6.5cm}||}
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}                 \\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}                 \\
+	\hline
+	\endhead
+	role\_id             & integer           & References role.id, Not Null, Unique \\
+	\hline
+	permission\_id       & integer           & References permission.id             \\
+	\hline
+	\hline
+	\caption{Database Schema for \textbf{Role Has Permissions} table}\label{tab:tableRoleHasPermissions}
+\end{longtable}
+
+\begin{longtable}[H]{|l|l|p{6.5cm}||}
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints} \\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints} \\
+	\hline
+	\endhead
+	user\_id             & integer           & References user.id   \\
+	\hline
+	role\_id             & integer           & References role.id   \\
+	\hline
+	\hline
+	\caption{Database Schema for \textbf{User Has Roles} table}\label{tab:tableUserHasRoles}
+\end{longtable}
+
+\begin{longtable}[H]{|l|l|p{6.5cm}||}
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}     \\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}     \\
+	\hline
+	\endhead
+	user\_id             & integer           & References user.id       \\
+	\hline
+	permission\_id       & integer           & References permission.id \\
+	\hline
+	\hline
+	\caption{Database Schema for \textbf{User Has Permissions} table}\label{tab:tableUserHasPermissions}
+\end{longtable}
+
+\begin{longtable}[H]{|l|l|p{6.5cm}||}
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}   \\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}   \\
+	\hline
+	\endhead
+	category\_id         & integer           & References category.id \\
+	\hline
+	product\_id          & integer           & References product.id  \\
+	\hline
+	\hline
+	\caption{Database Schema for \textbf{Category Has Products} table}\label{tab:tableCategoryHasProducts}
+\end{longtable}
+
+\begin{longtable}[H]{|l|l|p{6.5cm}||}
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}  \\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}  \\
+	\hline
+	\endhead
+	cart\_id             & integer           & References cart.id    \\
+	\hline
+	product\_id          & integer           & References product.id \\
+	\hline
+	\hline
+	\caption{Database Schema for \textbf{Cart Has Products} table}\label{tab:tableCartHasProducts}
+\end{longtable}
+
+\begin{longtable}[H]{|l|l|p{6.5cm}||}
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}  \\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}  \\
+	\hline
+	\endhead
+	order\_id            & integer           & References order.id   \\
+	\hline
+	product\_id          & integer           & References product.id \\
+	\hline
+	\hline
+	\caption{Database Schema for \textbf{Order Has Products} table}\label{tab:tableOrderHasProducts}
+\end{longtable}
+
+\begin{longtable}[H]{|l|l|p{6.5cm}||}
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}  \\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{Column Name} & \textbf{DataType} & \textbf{Constraints}  \\
+	\hline
+	\endhead
+	product\_id          & integer           & References product.id \\
+	\hline
+	image\_id            & integer           & References image.id   \\
+	\hline
+	\hline
+	\caption{Database Schema for \textbf{Product Has Images} table}\label{tab:tableProductHasImages}
+\end{longtable}
+
+\subsubsection{Database Entity-Relationship Diagram}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=1\textwidth]{diagrams/er}
+	\end{center}
+	\caption{ER Diagram for \textbf{PRICO}}
+\end{figure}
 
 \newpage
 
