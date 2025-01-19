@@ -9,6 +9,7 @@
 \usepackage{setspace}
 \usepackage{parskip}
 \usepackage{longtable}
+\usepackage[toc,page]{appendix}
 \usepackage{url}
 \def\UrlBreaks{\do\/\do-}
 \renewcommand{\arraystretch}{1.2}
@@ -1424,7 +1425,7 @@ functionality.
 	updated\_at          & timestamp         &                               \\
 	\hline
 	\hline
-	\caption{Database Schema for \textbf{User} table}\label{tab:table4}
+	\caption{Database Schema for \textbf{User} table}\label{tab:tableUser}
 \end{longtable}
 
 \begin{longtable}[H]{|l|l|p{6.5cm}||}
@@ -1459,7 +1460,7 @@ functionality.
 	verified\_at         & timestamp         &                               \\
 	\hline
 	\hline
-	\caption{Database Schema for \textbf{Seller} table}\label{tab:table4}
+	\caption{Database Schema for \textbf{Seller} table}\label{tab:tableseller}
 \end{longtable}
 
 \begin{longtable}[H]{|l|l|p{6.5cm}||}
@@ -1818,5 +1819,582 @@ functionality.
 \bibliographystyle{src/IEEEtran}
 \bibliography{src/references}
 \addcontentsline{toc}{chapter}{\protect\numberline{}References}
+
+\begin{appendices}
+	\chapter{Use Case Descriptions}
+
+	\begin{longtable}[H]{|l|p{9cm}||}
+		\hline
+		\multicolumn{2}{|c||}{\textbf{Use Case: Browse Products}}                                                        \\
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                             \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                             \\
+		\hline
+		\endhead
+		\textbf{Use-case ID}          & UC-001                                                                           \\
+		\hline
+		\textbf{Use-case description} & Allows buyers to browse available products using categories, filters, or search. \\
+		\hline
+		\textbf{Actors}               & Buyer                                                                            \\
+		\hline
+		\textbf{Pre-Conditions}       & Buyer is logged into the platform.                                               \\
+		\hline
+		\textbf{Post-Conditions}      & A list of products is displayed to the buyer.                                    \\
+		\hline
+		\textbf{Main flow}            & \begin{enumerate}
+			                                \item Buyer initiates product browsing.
+			                                \item Backend fetches products from cache or database.
+			                                \item Media files are retrieved from the media cache.
+			                                \item Product list is displayed to the buyer.
+		                                \end{enumerate}                            \\
+		\hline
+		\textbf{Exceptional flow}     & \begin{enumerate}
+			                                \item Cache miss: Backend queries database directly.
+			                                \item Media cache miss: Backend fetches files from object storage.
+		                                \end{enumerate}                \\
+		\hline
+		\textbf{Include}              & Full-text search, filtering options, category browsing                           \\
+		\hline
+		\textbf{Frequency of use}     & High                                                                             \\
+		\hline
+		\hline
+		\caption{Use Case: \textbf{Browse Products}}\label{tab:tableBrowseProducts}
+	\end{longtable}
+
+
+	\begin{longtable}[H]{|l|p{9cm}||}
+		\hline
+		\multicolumn{2}{|c||}{\textbf{Use Case: View Product Details}}                                        \\
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                  \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                  \\
+		\hline
+		\endhead
+		\textbf{Use-case ID}          & UC-002                                                                \\
+		\hline
+		\textbf{Use-case description} & Displays detailed information about a selected product.               \\
+		\hline
+		\textbf{Actors}               & Buyer                                                                 \\
+		\hline
+		\textbf{Pre-Conditions}       & Buyer selects a product from the product listing.                     \\
+		\hline
+		\textbf{Post-Conditions}      & Product details are displayed, and recommendations are generated.     \\
+		\hline
+		\textbf{Main flow}            & \begin{enumerate}
+			                                \item Buyer selects a product.
+			                                \item Backend retrieves product details and associated media.
+			                                \item Media cache provides processed media.
+			                                \item Recommendations engine generates suggestions.
+			                                \item Details and recommendations are displayed.
+		                                \end{enumerate}          \\
+		\hline
+		\textbf{Exceptional flow}     & \begin{enumerate}
+			                                \item Recommendation engine fails: Only product details are displayed.
+		                                \end{enumerate} \\
+		\hline
+		\textbf{Include}              & Recommendation generation                                             \\
+		\hline
+		\textbf{Frequency of use}     & High                                                                  \\
+		\hline
+		\hline
+		\caption{Use Case: \textbf{View Product Details}}\label{tab:tableViewProduct}
+	\end{longtable}
+
+	\begin{longtable}[H]{|l|p{9cm}||}
+		\hline
+		\multicolumn{2}{|c||}{\textbf{Use Case: Add Product to Cart}}                               \\
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                        \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                        \\
+		\hline
+		\endhead
+		\textbf{Use-case ID}          & UC-003                                                      \\
+		\hline
+		\textbf{Use-case description} & Allows buyers to add a product to their shopping cart.      \\
+		\hline
+		\textbf{Actors}               & Buyer                                                       \\
+		\hline
+		\textbf{Pre-Conditions}       & Buyer is logged into the platform.                          \\
+		\hline
+		\textbf{Post-Conditions}      & Product is added to the buyer’s cart.                       \\
+		\hline
+		\textbf{Main flow}            & \begin{enumerate}
+			                                \item Buyer clicks "Add to Cart".
+			                                \item Backend updates the cart in the database.
+			                                \item Confirmation is displayed to the buyer.
+		                                \end{enumerate}              \\
+		\hline
+		\textbf{Exceptional flow}     & \begin{enumerate}
+			                                \item Backend fails to update cart: Error message displayed.
+		                                \end{enumerate} \\
+		\hline
+		\textbf{Include}              & None                                                        \\
+		\hline
+		\textbf{Frequency of use}     & High                                                        \\
+		\hline
+		\hline
+		\caption{Use Case: \textbf{Add Product to Cart}}\label{tab:tableAddProduct}
+	\end{longtable}
+
+	\begin{longtable}[H]{|l|p{9cm}||}
+		\hline
+		\multicolumn{2}{|c||}{\textbf{Use Case: Make Payment}}                                     \\
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                       \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                       \\
+		\hline
+		\endhead
+		\textbf{Use-case ID}          & UC-004                                                     \\
+		\hline
+		\textbf{Use-case description} & Facilitates secure payment for placed orders.              \\
+		\hline
+		\textbf{Actors}               & Buyer                                                      \\
+		\hline
+		\textbf{Pre-Conditions}       & Buyer has added items to the cart and confirmed the order. \\
+		\hline
+		\textbf{Post-Conditions}      & Payment is processed, and order status is updated.         \\
+		\hline
+		\textbf{Main flow}            & \begin{enumerate}
+			                                \item Buyer initiates payment.
+			                                \item Backend interacts with the payment gateway.
+			                                \item Payment gateway processes transaction.
+			                                \item Backend confirms payment and updates order status.
+			                                \item Confirmation is displayed to the buyer.
+		                                \end{enumerate}    \\
+		\hline
+		\textbf{Exceptional flow}     & \begin{enumerate}
+			                                \item Payment fails: Buyer prompted to retry.
+			                                \item Gateway timeout: Transaction marked pending.
+		                                \end{enumerate}          \\
+		\hline
+		\textbf{Include}              & Secure payment handling                                    \\
+		\hline
+		\textbf{Frequency of use}     & Moderate                                                   \\
+		\hline
+		\hline
+		\caption{Use Case: \textbf{Make Payment}}\label{tab:tableMakePayment}
+	\end{longtable}
+
+	\begin{longtable}[H]{|l|p{9cm}||}
+		\hline
+		\multicolumn{2}{|c||}{\textbf{Use Case: Upload Product Media}}                                        \\
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                  \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                  \\
+		\hline
+		\endhead
+		\textbf{Use-case ID}          & UC-005                                                                \\
+		\hline
+		\textbf{Use-case description} & Enables sellers to upload product images or videos.                   \\
+		\hline
+		\textbf{Actors}               & Seller                                                                \\
+		\hline
+		\textbf{Pre-Conditions}       & Seller is logged in and has a product to list.                        \\
+		\hline
+		\textbf{Post-Conditions}      & Media is uploaded, processed, and linked to the product listing.      \\
+		\hline
+		\textbf{Main flow}            & \begin{enumerate}
+			                                \item Seller Uploads Media
+			                                \item Backend stores raw media in object storage.
+			                                \item Media processing task is added to the queue.
+			                                \item Media processing system processes and stores the optimized file.
+			                                \item Backend links processed media to product.
+		                                \end{enumerate} \\
+		\hline
+		\textbf{Exceptional flow}     & \begin{enumerate}
+			                                \item Queue fails: Media remains unprocessed.
+			                                \item Processing error: Seller notified of the issue.
+		                                \end{enumerate}                  \\
+		\hline
+		\textbf{Include}              & Queuing, media processing                                             \\
+		\hline
+		\textbf{Frequency of use}     & Moderate                                                              \\
+		\hline
+		\hline
+		\caption{Use Case: \textbf{Upload Product Media}}\label{tab:tableUploadMedia}
+	\end{longtable}
+
+	\begin{longtable}[H]{|l|p{9cm}||}
+		\hline
+		\multicolumn{2}{|c||}{\textbf{Use Case: List Product}}                                                  \\
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                    \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                    \\
+		\hline
+		\endhead
+		\textbf{Use-case ID}          & UC-006                                                                  \\
+		\hline
+		\textbf{Use-case description} & Allows sellers to create and publish a new product listing.             \\
+		\hline
+		\textbf{Actors}               & Seller                                                                  \\
+		\hline
+		\textbf{Pre-Conditions}       & Seller is logged in and verified.                                       \\
+		\hline
+		\textbf{Post-Conditions}      & Product is successfully listed and visible to buyers.                   \\
+		\hline
+		\textbf{Main flow}            & \begin{enumerate}
+			                                \item Seller navigates to "Add Product" form.
+			                                \item Fills in product details (e.g., title, description, price).
+			                                \item Backend validates the input and saves the listing to the database.
+			                                \item Confirmation message is displayed to the seller.
+		                                \end{enumerate} \\
+		\hline
+		\textbf{Exceptional flow}     & \begin{enumerate}
+			                                \item Validation fails: Seller is prompted to correct errors.
+			                                \item Database error: Listing is not saved, and seller is notified.
+		                                \end{enumerate}      \\
+		\hline
+		\textbf{Include}              & None                                                                    \\
+		\hline
+		\textbf{Frequency of use}     & High                                                                    \\
+		\hline
+		\hline
+		\caption{Use Case: \textbf{List Products}}\label{tab:tableListProducts}
+	\end{longtable}
+
+	\begin{longtable}[H]{|l|p{9cm}||}
+		\hline
+		\multicolumn{2}{|c||}{\textbf{Use Case: Manage Inventory}}                                           \\
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                 \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                 \\
+		\hline
+		\endhead
+		\textbf{Use-case ID}          & UC-007                                                               \\
+		\hline
+		\textbf{Use-case description} & Enables sellers to update inventory levels and product availability. \\
+		\hline
+		\textbf{Actors}               & Seller                                                               \\
+		\hline
+		\textbf{Pre-Conditions}       & Seller has listed at least one product.                              \\
+		\hline
+		\textbf{Post-Conditions}      & Inventory updates are reflected in product listings.                 \\
+		\hline
+		\textbf{Main flow}            & \begin{enumerate}
+			                                \item Seller navigates to the inventory management page.
+			                                \item Updates stock levels or marks a product as unavailable.
+			                                \item Backend validates and updates the database.
+			                                \item Changes are confirmed to the seller.
+		                                \end{enumerate}         \\
+		\hline
+		\textbf{Exceptional flow}     & \begin{enumerate}
+			                                \item Validation error: Seller is prompted to correct inputs.
+			                                \item Database error: Changes fail to save, and seller is notified.
+		                                \end{enumerate}   \\
+		\hline
+		\textbf{Include}              & None                                                                 \\
+		\hline
+		\textbf{Frequency of use}     & Moderate                                                             \\
+		\hline
+		\hline
+		\caption{Use Case: \textbf{Manage Inventory}}\label{tab:tableManageInventory}
+	\end{longtable}
+
+	\begin{longtable}[H]{|l|p{9cm}||}
+		\hline
+		\multicolumn{2}{|c||}{\textbf{Use Case: Analyze Sales Performance}}                                                      \\
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                                     \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                                     \\
+		\hline
+		\endhead
+		\textbf{Use-case ID}          & UC-008                                                                                   \\
+		\hline
+		\textbf{Use-case description} & Allows sellers to view performance metrics for their product sales.                      \\
+		\hline
+		\textbf{Actors}               & Seller                                                                                   \\
+		\hline
+		\textbf{Pre-Conditions}       & Seller has made at least one sale.                                                       \\
+		\hline
+		\textbf{Post-Conditions}      & Sales metrics are displayed to the seller.                                               \\
+		\hline
+		\textbf{Main flow}            & \begin{enumerate}
+			                                \item Seller navigates to the analytics dashboard.
+			                                \item Backend fetches sales data from the database.
+			                                \item Metrics (e.g., revenue, best-selling items) are displayed in an interactive format.
+		                                \end{enumerate} \\
+		\hline
+		\textbf{Exceptional flow}     & \begin{enumerate}
+			                                \item Database query fails: An error message is displayed.
+			                                \item Metrics not available: Seller is informed of insufficient data.
+		                                \end{enumerate}                     \\
+		\hline
+		\textbf{Include}              & None                                                                                     \\
+		\hline
+		\textbf{Frequency of use}     & Low to Moderate                                                                          \\
+		\hline
+		\hline
+		\caption{Use Case: \textbf{Analyze Sales Performance}}\label{tab:tableAnalyzeSales}
+	\end{longtable}
+
+	\begin{longtable}[H]{|l|p{9cm}||}
+		\hline
+		\multicolumn{2}{|c||}{\textbf{Use Case: Fulfill Orders}}                                                   \\
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                       \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                       \\
+		\hline
+		\endhead
+		\textbf{Use-case ID}          & UC-009                                                                     \\
+		\hline
+		\textbf{Use-case description} & Allows sellers to manage and fulfill orders placed by buyers.              \\
+		\hline
+		\textbf{Actors}               & Seller                                                                     \\
+		\hline
+		\textbf{Pre-Conditions}       & At least one order has been placed for the seller's products.              \\
+		\hline
+		\textbf{Post-Conditions}      & Order status is updated, and delivery is initiated.                        \\
+		\hline
+		\textbf{Main flow}            & \begin{enumerate}
+			                                \item Seller views pending orders.
+			                                \item Updates the order status (e.g., packed, shipped).
+			                                \item Backend saves the status change.
+			                                \item Notifications are sent to the buyer.
+		                                \end{enumerate}                     \\
+		\hline
+		\textbf{Exceptional flow}     & \begin{enumerate}
+			                                \item Database error: Order status fails to update, and seller is notified.
+		                                \end{enumerate} \\
+		\hline
+		\textbf{Include}              & None                                                                       \\
+		\hline
+		\textbf{Frequency of use}     & Moderate                                                                   \\
+		\hline
+		\hline
+		\caption{Use Case: \textbf{Fulfill Orders}}\label{tab:tableFulfillOrders}
+	\end{longtable}
+
+	\begin{longtable}[H]{|l|p{9cm}||}
+		\hline
+		\multicolumn{2}{|c||}{\textbf{Use Case: Verify Seller}}                                                       \\
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                          \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                          \\
+		\hline
+		\endhead
+		\textbf{Use-case ID}          & UC-010                                                                        \\
+		\hline
+		\textbf{Use-case description} & Allows admins to verify sellers by reviewing and approving their credentials. \\
+		\hline
+		\textbf{Actors}               & Admin                                                                         \\
+		\hline
+		\textbf{Pre-Conditions}       & A seller has submitted verification documents.                                \\
+		\hline
+		\textbf{Post-Conditions}      & The seller’s account is marked as verified and can list products.             \\
+		\hline
+		\textbf{Main flow}            & \begin{enumerate}
+			                                \item Admin navigates to the vendor verification queue.
+			                                \item Reviews submitted credentials.
+			                                \item Approves or rejects the request.
+			                                \item Backend updates the seller's verification status in the database.
+			                                \item Notification is sent to the seller.
+		                                \end{enumerate}        \\
+		\hline
+		\textbf{Exceptional flow}     & \begin{enumerate}
+			                                \item Credentials missing or invalid: Admin rejects the request.
+			                                \item Database error: Status update fails, and admin is notified.
+		                                \end{enumerate}              \\
+		\hline
+		\textbf{Include}              & None                                                                          \\
+		\hline
+		\textbf{Frequency of use}     & Low to Moderate                                                               \\
+		\hline
+		\hline
+		\caption{Use Case: \textbf{Verify Seller}}\label{tab:tableVerifySeller}
+	\end{longtable}
+
+	\begin{longtable}[H]{|l|p{9cm}||}
+		\hline
+		\multicolumn{2}{|c||}{\textbf{Use Case: Moderate Listings}}                                                        \\
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                               \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                               \\
+		\hline
+		\endhead
+		\textbf{Use-case ID}          & UC-011                                                                             \\
+		\hline
+		\textbf{Use-case description} & Allows admins to review and take action on product listings that violate policies. \\
+		\hline
+		\textbf{Actors}               & Admin                                                                              \\
+		\hline
+		\textbf{Pre-Conditions}       & A listing has been reported by users or flagged by the system.                     \\
+		\hline
+		\textbf{Post-Conditions}      & Listing is either approved, edited, or removed.                                    \\
+		\hline
+		\textbf{Main flow}            & \begin{enumerate}
+			                                \item Admin views the list of flagged or reported listings.
+			                                \item Reviews the listing details and any attached reports.
+			                                \item Take action (approve, edit, or remove).
+			                                \item Backend updates the listing status in the database.
+			                                \item Notification is sent to the seller.
+		                                \end{enumerate}                         \\
+		\hline
+		\textbf{Exceptional flow}     & \begin{enumerate}
+			                                \item Admin action fails: Error message is displayed, and listing remains flagged.
+		                                \end{enumerate}  \\
+		\hline
+		\textbf{Include}              & None                                                                               \\
+		\hline
+		\textbf{Frequency of use}     & Moderate                                                                           \\
+		\hline
+		\hline
+		\caption{Use Case: \textbf{Moderate Listings}}\label{tab:tableModerateListing}
+	\end{longtable}
+
+	\begin{longtable}[H]{|l|p{9cm}||}
+		\hline
+		\multicolumn{2}{|c||}{\textbf{Use Case: Resolve Disputes}}                                               \\
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                     \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                     \\
+		\hline
+		\endhead
+		\textbf{Use-case ID}          & UC-012                                                                   \\
+		\hline
+		\textbf{Use-case description} & Admin resolves disputes between buyers and sellers.                      \\
+		\hline
+		\textbf{Actors}               & Admin, Buyer, Seller                                                     \\
+		\hline
+		\textbf{Pre-Conditions}       & A dispute has been reported by a buyer or seller.                        \\
+		\hline
+		\textbf{Post-Conditions}      & Dispute is resolved, and appropriate action is taken.                    \\
+		\hline
+		\textbf{Main flow}            & \begin{enumerate}
+			                                \item Admin views the reported dispute.
+			                                \item Reviews dispute details and supporting evidence.
+			                                \item Communicate with both parties if needed.
+			                                \item Takes action (e.g., refund, suspension of seller).
+			                                \item Backend logs the resolution and updates related statuses.
+		                                \end{enumerate}           \\
+		\hline
+		\textbf{Exceptional flow}     & \begin{enumerate}
+			                                \item Insufficient evidence: Admin closes the dispute without resolution.
+		                                \end{enumerate} \\
+		\hline
+		\textbf{Include}              & None                                                                     \\
+		\hline
+		\textbf{Frequency of use}     & Low                                                                      \\
+		\hline
+		\hline
+		\caption{Use Case: \textbf{Resolve Disputes}}\label{tab:tableReslolveDisputes}
+	\end{longtable}
+
+	\begin{longtable}[H]{|l|p{9cm}||}
+		\hline
+		\multicolumn{2}{|c||}{\textbf{Use Case: Assign Delivery}}                                                                \\
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                                     \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                                     \\
+		\hline
+		\endhead
+		\textbf{Use-case ID}          & UC-013                                                                                   \\
+		\hline
+		\textbf{Use-case description} & Allows delivery agents to view and accept delivery assignments.                          \\
+		\hline
+		\textbf{Actors}               & Delivery Agent                                                                           \\
+		\hline
+		\textbf{Pre-Conditions}       & A new order has been placed and is ready for delivery.                                   \\
+		\hline
+		\textbf{Post-Conditions}      & Delivery is assigned to an agent and marked as in-progress.                              \\
+		\hline
+		\textbf{Main flow}            & \begin{enumerate}
+			                                \item Delivery agent logs into the platform.
+			                                \item Views available delivery assignments.
+			                                \item Accepts a delivery.
+			                                \item Backend updates the delivery status in the database.
+			                                \item Notification is sent to the buyer.
+		                                \end{enumerate}                                \\
+		\hline
+		\textbf{Exceptional flow}     & \begin{enumerate}
+			                                \item Delivery fails to assign: Error message is displayed, and order remains unassigned.
+		                                \end{enumerate} \\
+		\hline
+		\textbf{Include}              & None                                                                                     \\
+		\hline
+		\textbf{Frequency of use}     & Moderate                                                                                 \\
+		\hline
+		\hline
+		\caption{Use Case: \textbf{Assign Delivery}}\label{tab:tableAssignDelivery}
+	\end{longtable}
+
+	\begin{longtable}[H]{|l|p{9cm}||}
+		\hline
+		\multicolumn{2}{|c||}{\textbf{Use Case: Update Delivery Status}}                                                          \\
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                                      \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{Attribute}            & \textbf{Description}                                                                      \\
+		\hline
+		\endhead
+		\textbf{Use-case ID}          & UC-014                                                                                    \\
+		\hline
+		\textbf{Use-case description} & Enables delivery agents to update the status of a delivery (e.g., in transit, delivered). \\
+		\hline
+		\textbf{Actors}               & Delivery Agent                                                                            \\
+		\hline
+		\textbf{Pre-Conditions}       & Delivery is assigned to the agent.                                                        \\
+		\hline
+		\textbf{Post-Conditions}      & Delivery status is updated in the system.                                                 \\
+		\hline
+		\textbf{Main flow}            & \begin{enumerate}
+			                                \item Delivery agent navigates to assigned deliveries.
+			                                \item Selects a delivery and updates its status.
+			                                \item Backend saves the new status in the database.
+			                                \item Notification is sent to the buyer.
+		                                \end{enumerate}                                     \\
+		\hline
+		\textbf{Exceptional flow}     & \begin{enumerate}
+			                                \item Status update fails: Error message is displayed, and agent retries.
+		                                \end{enumerate}                  \\
+		\hline
+		\textbf{Include}              & None                                                                                      \\
+		\hline
+		\textbf{Frequency of use}     & High                                                                                      \\
+		\hline
+		\hline
+		\caption{Use Case: \textbf{Update Delivery Status}}\label{tab:tableUpdateStatus}
+	\end{longtable}
+\end{appendices}
 
 \end{document}
