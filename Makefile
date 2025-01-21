@@ -7,7 +7,10 @@ DIAGRAMFILES := $(wildcard $(SRC)/$(DIAGRAMS)/*.txt)
 all: watch_document
 
 watch_document: generate_diagrams
-	latexmk -pdf -pvc -f -e '$$bibtex_fudge=1' -outdir=$(OUT) $(SRC)/main.tex 
+	latexmk -pdf -pvc -f -e '$$bibtex_fudge=1' -outdir=$(OUT) $(SRC)/main.tex
+
+watch_slides: generate_diagrams
+	latexmk -pdf -pvc -f -e '$$bibtex_fudge=1' -outdir=$(OUT)/slides $(SRC)/slides.tex
 
 watch_diagram:
 	@while inotifywait -r -e modify,create,delete ./$(SRC)/$(DIAGRAMS); do \
