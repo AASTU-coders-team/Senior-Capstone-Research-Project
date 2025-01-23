@@ -3,20 +3,28 @@ DIAGRAMS = diagrams
 ASSETS = assets
 OUT = build
 DIAGRAMFILES := $(wildcard $(SRC)/$(DIAGRAMS)/*.txt)
+FLAGS = -pdf -f -e '$$bibtex_fudge=1'
 
-all: build_document build_slides
+all: build
+
+build: FLAGS += -c
+build: build_document build_slides
+
+debug: build_document build_slides
 
 build_document: generate_diagrams
-	latexmk -pdf -f -e '$$bibtex_fudge=1' -outdir=$(OUT) $(SRC)/main.tex
+	latexmk $(FLAGS) -outdir=$(OUT) $(SRC)/main.tex
 
 build_slides: generate_diagrams
-	latexmk -pdf -f -e '$$bibtex_fudge=1' -outdir=$(OUT)/slides $(SRC)/slides.tex
+	latexmk $(FLAGS) -outdir=$(OUT)/slides $(SRC)/slides.tex
 
+watch_document: FLAGS += -pvc
 watch_document: generate_diagrams
-	latexmk -pdf -pvc -f -e '$$bibtex_fudge=1' -outdir=$(OUT) $(SRC)/main.tex
+	latexmk $(FLAGS) -outdir=$(OUT) $(SRC)/main.tex
 
+watch_slides: FLAGS += -pvc
 watch_slides: generate_diagrams
-	latexmk -pdf -pvc -f -e '$$bibtex_fudge=1' -outdir=$(OUT)/slides $(SRC)/slides.tex
+	latexmk $(FLAGS) -outdir=$(OUT)/slides $(SRC)/slides.tex
 
 watch_diagrams:
 	@while inotifywait -r -e modify,create,delete ./$(SRC)/$(DIAGRAMS); do \
