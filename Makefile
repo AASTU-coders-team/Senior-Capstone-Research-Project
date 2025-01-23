@@ -4,7 +4,13 @@ ASSETS = assets
 OUT = build
 DIAGRAMFILES := $(wildcard $(SRC)/$(DIAGRAMS)/*.txt)
 
-all: watch_document
+all: build_document build_slides
+
+build_document: generate_diagrams
+	latexmk -pdf -f -e '$$bibtex_fudge=1' -outdir=$(OUT) $(SRC)/main.tex
+
+build_slides: generate_diagrams
+	latexmk -pdf -f -e '$$bibtex_fudge=1' -outdir=$(OUT)/slides $(SRC)/slides.tex
 
 watch_document: generate_diagrams
 	latexmk -pdf -pvc -f -e '$$bibtex_fudge=1' -outdir=$(OUT) $(SRC)/main.tex
@@ -12,9 +18,9 @@ watch_document: generate_diagrams
 watch_slides: generate_diagrams
 	latexmk -pdf -pvc -f -e '$$bibtex_fudge=1' -outdir=$(OUT)/slides $(SRC)/slides.tex
 
-watch_diagram:
+watch_diagrams:
 	@while inotifywait -r -e modify,create,delete ./$(SRC)/$(DIAGRAMS); do \
-		make generate_diagrams; \
+		${MAKE} generate_diagrams; \
 	done
 
 generate_diagrams:
@@ -25,6 +31,10 @@ generate_diagrams:
 	done
 
 clean:
-	rm -rf $(OUT)
+	$(RM) -r $(OUT)
 
-.phony: all clean watch_document watch_diagram generate_diagrams
+.phony: all clean
+
+.phony: watch_document watch_diagrams watch_slides
+
+.phony: build_document build_slides generate_diagrams
