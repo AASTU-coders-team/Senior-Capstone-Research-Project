@@ -14,10 +14,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - uses: awalsh128/cache-apt-pkgs-action@latest
-      with:
-        packages: texlive-full plantuml
-        version: 1.0
+    - name: Install texlive-full
+      run: sudo apt-get install texlive-full plantuml
 
     - name: Build files
       run: make
