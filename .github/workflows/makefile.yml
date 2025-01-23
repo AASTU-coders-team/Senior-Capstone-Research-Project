@@ -23,6 +23,7 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4
       with:
-        path: build/
-        if-no-files-found: error
         include-hidden-files: true
+        path: |
+            build/main.pdf
+            build/slides/slides.pdf
