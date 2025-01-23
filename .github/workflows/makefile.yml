@@ -14,8 +14,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Install texlive-full
-      run: sudo apt-get install texlive plantuml
+    - name: Install texlive and plantuml
+      run: sudo apt-get install texlive latexmk plantuml
 
     - name: Build files
       run: make
